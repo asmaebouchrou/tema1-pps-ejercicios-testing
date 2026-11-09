@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block contenido %}
+<section class="tarjeta formulario">
+  <h1>Crear una cuenta</h1>
+  <p class="secundario">Regístrate para publicar en el blog.</p>
+  {% if error %}<div class="aviso error" role="alert">{{ error }}</div>{% endif %}
+  <form method="post">
+    <label for="usuario">Usuario</label>
+    <input id="usuario" name="usuario" value="{{ usuario|default('') }}" minlength="3" maxlength="40" autocomplete="username" required>
+    <small>Entre 3 y 40 caracteres.</small>
+    <label for="password">Contraseña</label>
+    <input id="password" name="password" type="password" minlength="8" autocomplete="new-password" required>
+    <small>Al menos 8 caracteres.</small>
+    <button type="submit">Registrarse</button>
+  </form>
+  <p class="secundario">¿Ya tienes cuenta? <a href="/entrar">Inicia sesión</a>.</p>
+</section>
+{% endblock %}

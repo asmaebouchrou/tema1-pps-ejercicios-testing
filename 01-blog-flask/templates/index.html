@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block contenido %}
+<div class="titulo-pagina"><div><h1>Publicaciones</h1><p class="secundario">Ideas y notas de nuestro blog de pruebas.</p></div>{% if conectado %}<a class="boton" href="/posts">Escribir publicación</a>{% endif %}</div>
+{% for post in posts %}
+<article class="tarjeta publicacion"><h2>{{ post['titulo'] }}</h2><p class="texto-post">{{ post['cuerpo'] }}</p><div class="firma">Publicado por {{ post['autor'] }}</div></article>
+{% else %}<div class="tarjeta vacio">Todavía no hay publicaciones. ¡Escribe la primera!</div>{% endfor %}
+{% endblock %}

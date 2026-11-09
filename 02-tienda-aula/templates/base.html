@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Tienda Aula: tecnología y accesorios para estudiar, trabajar y crear.">
+  <title>{% block titulo %}Tienda Aula · Tecnología para tus ideas{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='estilo.css') }}">
+</head>
+<body>
+  <div class="announcement">Envío simulado · Entorno de prácticas · Compra con datos ficticios</div>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="{{ url_for('catalogo') }}" aria-label="Tienda Aula, ir al inicio"><span class="brand-symbol">TA<span class="brand-dot">.</span></span><span class="brand-name">TIENDA <b>AULA</b><small>TECNOLOGÍA PARA TUS IDEAS</small></span></a>
+      <form class="search" action="{{ url_for('catalogo') }}" method="get" role="search"><label class="sr-only" for="buscar">Buscar productos</label><input id="buscar" type="search" name="q" placeholder="¿Qué estás buscando?" value="{{ request.args.get('q', '') }}"><button type="submit" aria-label="Buscar">Buscar</button></form>
+      <nav class="nav-actions" aria-label="Cuenta y pedidos">
+        <a href="{{ url_for('ver_carrito') }}" class="cart-link">Carrito <span class="cart-badge">{{ carrito_total }}</span></a>
+        {% if usuario %}<a href="{{ url_for('pedidos') }}">Mis pedidos</a><span class="user-chip">{{ usuario }}</span><form class="inline" action="{{ url_for('salir') }}" method="post"><button class="logout">Salir</button></form>
+        {% else %}<a class="login-link" href="{{ url_for('entrar') }}">Entrar</a>{% endif %}
+      </nav>
+    </div>
+    <div class="category-bar"><nav aria-label="Secciones de la tienda"><a href="{{ url_for('catalogo') }}">Inicio y catálogo</a><a href="{{ url_for('catalogo', categoria='perifericos') }}">Periféricos</a><a href="{{ url_for('catalogo', categoria='informatica') }}">Informática</a><a href="{{ url_for('catalogo', categoria='estudio') }}">Estudio y oficina</a><a href="{{ url_for('ayuda') }}">Ayuda</a></nav><span class="category-extra">Selección para el aula digital</span></div>
+  </header>
+  <main class="container">
+    {% for m in get_flashed_messages() %}<p class="aviso" role="status">{{ m }}</p>{% endfor %}
+    {% block contenido %}{% endblock %}
+  </main>
+  <footer class="footer"><div class="footer-inner"><div><div class="footer-brand">TIENDA AULA<span>.</span></div><p>Tu tienda de tecnología de demostración.</p><small>Aplicación didáctica: no procesa pagos reales ni envíos.</small></div><div><b>Descubre</b><a href="{{ url_for('catalogo') }}">Catálogo</a><a href="{{ url_for('catalogo', categoria='informatica') }}">Informática</a><a href="{{ url_for('catalogo', categoria='perifericos') }}">Periféricos</a></div><div><b>Tu cuenta</b><a href="{{ url_for('ver_carrito') }}">Carrito</a><a href="{{ url_for('pedidos') }}">Mis pedidos</a><a href="{{ url_for('ayuda') }}">Centro de ayuda</a></div></div><div class="footer-bottom">© Tienda Aula · Proyecto educativo · Productos y cuentas ficticios</div></footer>
+</body>
+</html>

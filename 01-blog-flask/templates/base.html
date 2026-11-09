@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Blog de laboratorio</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="cabecera">
+    <div class="contenedor cabecera-interior">
+      <a class="marca" href="/">Blog de laboratorio</a>
+      <nav aria-label="Navegación principal">
+        <a href="/">Inicio</a>
+        <a href="/registro">Registro</a>
+        <a href="/entrar">Entrar</a>
+        <a href="/posts">Nueva publicación</a>
+        <form action="/salir" method="post" class="inline"><button class="enlace-boton" type="submit">Salir</button></form>
+      </nav>
+    </div>
+  </header>
+  <main class="contenedor">
+    {% block contenido %}{% endblock %}
+  </main>
+  <footer class="pie">Proyecto didáctico · Pruebas E2E con Flask</footer>
+</body>
+</html>

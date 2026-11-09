@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block contenido %}
+<section class="tarjeta formulario"><h1>Nueva publicación</h1>
+<form method="post"><label for="titulo">Título</label><input id="titulo" name="titulo" maxlength="100" required>
+<label for="cuerpo">Contenido</label><textarea id="cuerpo" name="cuerpo" rows="7" maxlength="2000" required></textarea>
+<button type="submit">Publicar</button></form></section>
+{% endblock %}
